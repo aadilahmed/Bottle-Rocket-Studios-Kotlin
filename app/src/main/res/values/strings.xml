@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BottleRocketStudiosCodingTest</string>
+
+    <string name="network_error_message">Failed to connect to internet. Please connect and try again.</string>
 </resources>
