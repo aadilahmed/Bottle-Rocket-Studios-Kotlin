@@ -1,8 +1,11 @@
 package com.example.bottlerocketstudioscodingtest.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Store {
+public class Store implements Parcelable {
     @SerializedName("address")
     private String address;
     @SerializedName("city")
@@ -25,6 +28,27 @@ public class Store {
         this.phone = phone;
         this.state = state;
     }
+
+    protected Store(Parcel in) {
+        address = in.readString();
+        city = in.readString();
+        name = in.readString();
+        storeLogoURL = in.readString();
+        phone = in.readString();
+        state = in.readString();
+    }
+
+    public static final Creator<Store> CREATOR = new Creator<Store>() {
+        @Override
+        public Store createFromParcel(Parcel in) {
+            return new Store(in);
+        }
+
+        @Override
+        public Store[] newArray(int size) {
+            return new Store[size];
+        }
+    };
 
     public String getAddress() {
         return address;
@@ -72,5 +96,20 @@ public class Store {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(address);
+        parcel.writeString(city);
+        parcel.writeString(name);
+        parcel.writeString(storeLogoURL);
+        parcel.writeString(phone);
+        parcel.writeString(state);
     }
 }

@@ -40,9 +40,11 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder>{
         String logo = store.getStoreLogoURL();
         String number = store.getPhone();
         String address = store.getAddress();
+        String name = store.getName();
 
         viewHolder.mStorePhoneNumberView.setText(number);
         viewHolder.mStoreAddressView.setText(address);
+        viewHolder.mStoreNameView.setText(name);
 
         Glide.with(context).load(logo).into(viewHolder.mImageView);
 
@@ -51,7 +53,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder>{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailActivity.class);
-                //intent.putExtra("store", store);
+                intent.putExtra("store", store);
                 context.startActivity(intent);
             }
         });
@@ -65,6 +67,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView mStoreAddressView;
         private TextView mStorePhoneNumberView;
+        private TextView mStoreNameView;
         private ImageView mImageView;
         private CardView mCardView;
 
@@ -72,6 +75,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder>{
             super(itemView);
             mStoreAddressView = itemView.findViewById(R.id.store_address);
             mStorePhoneNumberView = itemView.findViewById(R.id.store_phone);
+            mStoreNameView = itemView.findViewById(R.id.store_name);
             mImageView = itemView.findViewById(R.id.store_logo);
         }
     }
