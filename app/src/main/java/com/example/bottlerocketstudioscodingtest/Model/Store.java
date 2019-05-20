@@ -18,15 +18,18 @@ public class Store implements Parcelable {
     private String phone;
     @SerializedName("state")
     private String state;
+    @SerializedName("zipcode")
+    private String zipcode;
 
     public Store(String address, String city, String name, String storeLogoURL, String phone,
-                 String state){
+                 String state, String zipcode){
         this.address = address;
         this.city = city;
         this.name = name;
         this.storeLogoURL = storeLogoURL;
         this.phone = phone;
         this.state = state;
+        this.zipcode = zipcode;
     }
 
     protected Store(Parcel in) {
@@ -36,6 +39,7 @@ public class Store implements Parcelable {
         storeLogoURL = in.readString();
         phone = in.readString();
         state = in.readString();
+        zipcode = in.readString();
     }
 
     public static final Creator<Store> CREATOR = new Creator<Store>() {
@@ -98,6 +102,14 @@ public class Store implements Parcelable {
         this.state = state;
     }
 
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -111,5 +123,6 @@ public class Store implements Parcelable {
         parcel.writeString(storeLogoURL);
         parcel.writeString(phone);
         parcel.writeString(state);
+        parcel.writeString(zipcode);
     }
 }

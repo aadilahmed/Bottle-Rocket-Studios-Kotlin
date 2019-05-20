@@ -62,10 +62,6 @@ public class StoresFragment extends Fragment {
                 mLayoutManager = new LinearLayoutManager(getContext());
                 mRecyclerView.setLayoutManager(mLayoutManager);
                 mRecyclerView.setAdapter(mAdapter);
-
-                mDividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
-                        DividerItemDecoration.VERTICAL);
-                mRecyclerView.addItemDecoration(mDividerItemDecoration);
             }
 
             @Override
