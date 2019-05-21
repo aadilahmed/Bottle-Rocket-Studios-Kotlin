@@ -1,6 +1,5 @@
 package com.example.bottlerocketstudioscodingtest;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,8 +13,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.bottlerocketstudioscodingtest.Model.Store;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
-public class DetailFragment extends Fragment {
+public class DetailFragment extends Fragment implements OnMapReadyCallback {
     private String address;
     private String city;
     private String name;
@@ -23,6 +28,11 @@ public class DetailFragment extends Fragment {
     private String phone;
     private String state;
     private String zipcode;
+    private String latitude;
+    private String longitude;
+
+    private MapView mMapView;
+    private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
 
     public DetailFragment() {}
 
@@ -43,6 +53,8 @@ public class DetailFragment extends Fragment {
         phone = store.getPhone();
         state = store.getState();
         zipcode = store.getZipcode();
+        latitude = store.getLatitude();
+        longitude = store.getLongtitude();
 
         final String phone_digits_only = phone.replaceAll("\\D", "");
 
@@ -54,6 +66,15 @@ public class DetailFragment extends Fragment {
         store_address.setText(address);
         store_address.append(", " + city + ", " + state + " " + zipcode);
         store_phone.setText(phone);
+
+        Bundle mapViewBundle = null;
+        if (savedInstanceState != null) {
+            mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
+        }
+        mMapView = (MapView) rootView.findViewById(R.id.location_map);
+        mMapView.onCreate(mapViewBundle);
+
+        mMapView.getMapAsync(this);
 
         CardView phone_frame = rootView.findViewById(R.id.number_frame);
         phone_frame.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +88,88 @@ public class DetailFragment extends Fragment {
             }
         });
 
+        CardView address_frame = rootView.findViewById(R.id.address_frame);
+        address_frame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + latitude + "," + longitude);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    startActivity(mapIntent);
+                }
+            }
+        });
+
+        mMapView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + latitude + "," + longitude);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    startActivity(mapIntent);
+                }
+            }
+        });
+
         return rootView;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        Bundle mapViewBundle = outState.getBundle(MAPVIEW_BUNDLE_KEY);
+        if (mapViewBundle == null) {
+            mapViewBundle = new Bundle();
+            outState.putBundle(MAPVIEW_BUNDLE_KEY, mapViewBundle);
+        }
+
+        mMapView.onSaveInstanceState(mapViewBundle);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mMapView.onResume();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mMapView.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mMapView.onStop();
+    }
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+        LatLng loc = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
+        map.addMarker(new MarkerOptions().position(loc).title("Marker"));
+        map.moveCamera(CameraUpdateFactory.newLatLng(loc));
+        map.setMinZoomPreference(15);
+    }
+
+    @Override
+    public void onPause() {
+        mMapView.onPause();
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        mMapView.onDestroy();
+        super.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mMapView.onLowMemory();
     }
 }

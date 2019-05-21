@@ -38,7 +38,6 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:textColor="@color/store_name_color"
-        android:gravity="center_horizontal"
         app:layout_constraintBottom_toTopOf="@id/store_phone"
         app:layout_constraintLeft_toRightOf="@id/store_logo"
         app:layout_constraintTop_toBottomOf="@id/store_name" />
@@ -48,6 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
