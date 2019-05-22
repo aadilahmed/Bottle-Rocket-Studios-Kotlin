@@ -1,4 +1,4 @@
-package com.example.bottlerocketstudioscodingtest;
+package com.example.bottlerocketstudioscodingtest.UI;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.bottlerocketstudioscodingtest.Model.Store;
+import com.example.bottlerocketstudioscodingtest.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -24,7 +25,6 @@ public class DetailFragment extends Fragment implements OnMapReadyCallback {
     private String address;
     private String city;
     private String name;
-    private String storeLogoURL;
     private String phone;
     private String state;
     private String zipcode;
@@ -49,7 +49,6 @@ public class DetailFragment extends Fragment implements OnMapReadyCallback {
         address = store.getAddress();
         city = store.getCity();
         name = store.getName();
-        storeLogoURL = store.getStoreLogoURL();
         phone = store.getPhone();
         state = store.getState();
         zipcode = store.getZipcode();
@@ -71,7 +70,7 @@ public class DetailFragment extends Fragment implements OnMapReadyCallback {
         if (savedInstanceState != null) {
             mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
         }
-        mMapView = (MapView) rootView.findViewById(R.id.location_map);
+        mMapView = rootView.findViewById(R.id.location_map);
         mMapView.onCreate(mapViewBundle);
 
         mMapView.getMapAsync(this);
@@ -88,20 +87,8 @@ public class DetailFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        CardView address_frame = rootView.findViewById(R.id.address_frame);
-        address_frame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + latitude + "," + longitude);
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                mapIntent.setPackage("com.google.android.apps.maps");
-                if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                    startActivity(mapIntent);
-                }
-            }
-        });
-
-        mMapView.setOnClickListener(new View.OnClickListener() {
+        CardView get_directions_frame = rootView.findViewById(R.id.get_directions_frame);
+        get_directions_frame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + latitude + "," + longitude);
@@ -150,7 +137,7 @@ public class DetailFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap map) {
         LatLng loc = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
-        map.addMarker(new MarkerOptions().position(loc).title("Marker"));
+        map.addMarker(new MarkerOptions().position(loc).title(name));
         map.moveCamera(CameraUpdateFactory.newLatLng(loc));
         map.setMinZoomPreference(15);
     }

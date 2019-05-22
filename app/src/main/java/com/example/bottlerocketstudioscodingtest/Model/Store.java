@@ -24,9 +24,11 @@ public class Store implements Parcelable {
     private String latitude;
     @SerializedName("longitude")
     private String longitude;
+    @SerializedName("storeID")
+    private String storeID;
 
     public Store(String address, String city, String name, String storeLogoURL, String phone,
-                 String state, String zipcode, String latitude, String longitude){
+                 String state, String zipcode, String latitude, String longitude, String storeID){
         this.address = address;
         this.city = city;
         this.name = name;
@@ -36,6 +38,7 @@ public class Store implements Parcelable {
         this.zipcode = zipcode;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.storeID = storeID;
     }
 
     protected Store(Parcel in) {
@@ -48,6 +51,7 @@ public class Store implements Parcelable {
         zipcode = in.readString();
         latitude = in.readString();
         longitude = in.readString();
+        storeID = in.readString();
     }
 
     public static final Creator<Store> CREATOR = new Creator<Store>() {
@@ -134,6 +138,14 @@ public class Store implements Parcelable {
         this.longitude = longitude;
     }
 
+    public String getStoreID() {
+        return storeID;
+    }
+
+    public void setStoreID(String storeID) {
+        this.storeID = storeID;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -150,5 +162,6 @@ public class Store implements Parcelable {
         parcel.writeString(zipcode);
         parcel.writeString(latitude);
         parcel.writeString(longitude);
+        parcel.writeString(storeID);
     }
 }

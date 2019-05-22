@@ -1,9 +1,8 @@
-package com.example.bottlerocketstudioscodingtest;
+package com.example.bottlerocketstudioscodingtest.UI;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.bottlerocketstudioscodingtest.Model.Store;
+import com.example.bottlerocketstudioscodingtest.R;
 
 import java.util.ArrayList;
 
@@ -42,8 +42,10 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder>{
         String address = store.getAddress();
         String name = store.getName();
         String city = store.getCity();
+        String id = store.getStoreID();
 
-        viewHolder.mStorePhoneNumberView.setText(number);
+        viewHolder.mStorePhoneNumberView.setText(R.string.phone_label);
+        viewHolder.mStorePhoneNumberView.append(" " + number);
         viewHolder.mStoreAddressView.setText(address);
         viewHolder.mStoreAddressView.append(", " + city);
         viewHolder.mStoreNameView.setText(name);

@@ -1,5 +1,8 @@
-package com.example.bottlerocketstudioscodingtest;
+package com.example.bottlerocketstudioscodingtest.Utils;
 
+import android.content.Context;
+
+import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -10,12 +13,15 @@ public class RetrofitClientInstance {
     private static final String BASE_URL =
             "http://sandbox.bottlerocketapps.com/BR_Android_CodingExam_2015_Server/";
 
-    public static Retrofit getRetrofitInstance() {
+    public static Retrofit getRetrofitInstance(Context context) {
+        int cacheSize = (5 * 1024 * 1024);
+        Cache mCache = new Cache(context.getCacheDir(), cacheSize);
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor)
+                .cache(mCache)
                 .build();
 
         retrofit = new Retrofit.Builder()

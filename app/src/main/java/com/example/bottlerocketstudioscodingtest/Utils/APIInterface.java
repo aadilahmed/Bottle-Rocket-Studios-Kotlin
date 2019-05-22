@@ -1,4 +1,4 @@
-package com.example.bottlerocketstudioscodingtest;
+package com.example.bottlerocketstudioscodingtest.Utils;
 
 import com.example.bottlerocketstudioscodingtest.Model.StoreList;
 

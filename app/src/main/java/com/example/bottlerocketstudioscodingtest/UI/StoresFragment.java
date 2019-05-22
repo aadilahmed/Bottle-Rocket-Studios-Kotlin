@@ -1,4 +1,4 @@
-package com.example.bottlerocketstudioscodingtest;
+package com.example.bottlerocketstudioscodingtest.UI;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import com.example.bottlerocketstudioscodingtest.Model.Store;
 import com.example.bottlerocketstudioscodingtest.Model.StoreList;
+import com.example.bottlerocketstudioscodingtest.R;
+import com.example.bottlerocketstudioscodingtest.Utils.APIInterface;
+import com.example.bottlerocketstudioscodingtest.Utils.RetrofitClientInstance;
 
 import java.util.ArrayList;
 
@@ -26,7 +29,6 @@ public class StoresFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private RecyclerView.ItemDecoration mDividerItemDecoration;
     private Retrofit retrofit;
 
     public StoresFragment () {}
@@ -38,7 +40,7 @@ public class StoresFragment extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_stores, container,
                 false);
 
-        retrofit = RetrofitClientInstance.getRetrofitInstance();
+        retrofit = RetrofitClientInstance.getRetrofitInstance(getContext());
         final APIInterface apiInterface = retrofit.create(APIInterface.class);
 
         Call<StoreList> call = apiInterface.getContent();
@@ -54,7 +56,6 @@ public class StoresFragment extends Fragment {
                 }
 
                 ArrayList<Store> storeList = response.body().getContentArrayList();
-
                 mRecyclerView = rootView.findViewById(R.id.rv_stores_list);
                 mRecyclerView.setHasFixedSize(true);
                 mAdapter = new StoreAdapter(storeList);
