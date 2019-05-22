@@ -40,7 +40,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="sans-serif-medium"
-            android:textColor="@color/store_name_color"
+            android:textColor="@color/title_color"
             android:textSize="16sp" />
 
         <TextView
@@ -50,7 +50,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginBottom="4dp"
-            android:textColor="@color/store_name_color" />
+            android:textColor="@color/title_color" />
 
         <TextView
             android:id="@+id/store_phone"

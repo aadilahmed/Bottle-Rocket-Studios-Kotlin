@@ -16,7 +16,7 @@
             android:layout_margin="16dp"
             app:layout_constraintBottom_toTopOf="@id/address_frame"
             android:textSize="32sp"
-            android:textColor="@color/store_name_color"
+            android:textColor="@color/title_color"
             android:textStyle="bold"
             android:fontFamily="sans-serif-black"
             app:layout_constraintLeft_toLeftOf="parent"/>
@@ -85,7 +85,7 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginStart="8dp"
                     android:text="@string/directions_label"
-                    android:textColor="@color/store_name_color"
+                    android:textColor="@color/title_color"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@id/directions_symbol" />
@@ -135,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:text="@string/call_string"
-                    android:textColor="@color/store_name_color"
+                    android:textColor="@color/title_color"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@id/phone_symbol"
