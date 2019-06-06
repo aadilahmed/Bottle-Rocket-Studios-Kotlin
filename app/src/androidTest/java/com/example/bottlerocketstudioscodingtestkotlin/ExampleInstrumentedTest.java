@@ -1,4 +1,4 @@
-package com.example.bottlerocketstudioscodingtest;
+package com.example.bottlerocketstudioscodingtestkotlin;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

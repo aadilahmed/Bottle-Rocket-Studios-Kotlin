@@ -1,4 +1,4 @@
-package com.example.bottlerocketstudioscodingtest;
+package com.example.bottlerocketstudioscodingtestkotlin;
 
 import org.junit.Test;
 
