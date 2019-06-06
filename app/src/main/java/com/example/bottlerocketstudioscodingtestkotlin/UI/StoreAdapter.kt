@@ -6,12 +6,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 
 import com.bumptech.glide.Glide
 import com.example.bottlerocketstudioscodingtestkotlin.Model.Store
 import com.example.bottlerocketstudioscodingtestkotlin.R
+import kotlinx.android.synthetic.main.store_item.view.*
 
 import java.util.ArrayList
 
@@ -33,7 +32,6 @@ class StoreAdapter(private val stores: ArrayList<Store>) : RecyclerView.Adapter<
         val address = store.address
         val name = store.name
         val city = store.city
-        val id = store.storeID
 
         viewHolder.mStorePhoneNumberView.setText(R.string.phone_label)
         viewHolder.mStorePhoneNumberView.append(" $number")
@@ -55,16 +53,9 @@ class StoreAdapter(private val stores: ArrayList<Store>) : RecyclerView.Adapter<
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val mStoreAddressView: TextView
-        val mStorePhoneNumberView: TextView
-        val mStoreNameView: TextView
-        val mImageView: ImageView
-
-        init {
-            mStoreAddressView = itemView.findViewById(R.id.store_address)
-            mStorePhoneNumberView = itemView.findViewById(R.id.store_phone)
-            mStoreNameView = itemView.findViewById(R.id.store_name)
-            mImageView = itemView.findViewById(R.id.store_logo)
-        }
+        val mStoreAddressView = itemView.store_address
+        val mStorePhoneNumberView = itemView.store_phone
+        val mStoreNameView = itemView.store_name
+        val mImageView = itemView.store_logo
     }
 }

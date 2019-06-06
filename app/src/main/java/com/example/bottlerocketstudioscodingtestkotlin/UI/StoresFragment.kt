@@ -10,13 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 
-import com.example.bottlerocketstudioscodingtestkotlin.Model.Store
 import com.example.bottlerocketstudioscodingtestkotlin.Model.StoreList
 import com.example.bottlerocketstudioscodingtestkotlin.R
 import com.example.bottlerocketstudioscodingtestkotlin.Utils.APIInterface
 import com.example.bottlerocketstudioscodingtestkotlin.Utils.RetrofitClientInstance
-
-import java.util.ArrayList
 
 import retrofit2.Call
 import retrofit2.Callback

@@ -9,7 +9,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClientInstance {
-    //private var retrofit: Retrofit? = null
     private val BASE_URL = "http://sandbox.bottlerocketapps.com/BR_Android_CodingExam_2015_Server/"
 
     fun getRetrofitInstance(context: Context): Retrofit {

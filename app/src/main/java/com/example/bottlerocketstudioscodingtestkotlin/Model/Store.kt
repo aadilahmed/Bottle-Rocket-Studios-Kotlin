@@ -71,19 +71,6 @@ class Store : Parcelable {
         parcel.writeString(storeID)
     }
 
-    /*companion object {
-
-        val CREATOR: Parcelable.Creator<Store> = object : Parcelable.Creator<Store> {
-            override fun createFromParcel(`in`: Parcel): Store {
-                return Store(`in`)
-            }
-
-            override fun newArray(size: Int): Array<Store> {
-                return arrayOfNulls(size)
-            }
-        }
-    }*/
-
     companion object CREATOR : Parcelable.Creator<Store> {
         override fun createFromParcel(parcel: Parcel): Store {
             return Store(parcel)
