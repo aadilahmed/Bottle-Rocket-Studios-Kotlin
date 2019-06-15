@@ -1,5 +1,5 @@
 # Bottle-Rocket-Studios-Coding-Test
-Coding exam for Bottle Rocket Studios application
+Coding exam for Bottle Rocket Studios Android Developer application
 
 ## Libraries Used
 * Retrofit
